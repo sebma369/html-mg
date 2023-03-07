@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "types": ["@mastergo/plugin-typings"]
+    },
+    "include": [
+        "./*.ts"
+      ]
+}

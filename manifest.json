@@ -1,0 +1,7 @@
+{
+  "name": "htmltomg",
+  "id": 87936723150724,
+  "api": "1.0.0",
+  "main": "./main.js",
+  "ui": "./ui.html"
+}

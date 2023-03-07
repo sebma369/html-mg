@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginscreen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(37, 37, 38);
+            height: 100%;
+        }
+
+        .container {
+            width: 300px;
+            background-color: rgb(30, 30, 30);
+            border-radius: 20px;
+            padding: 50px;
+        }
+
+        .container .header {
+            text-align: center;
+            font-size: 35px;
+            line-height: 80px;
+            color: rgb(206, 209, 212);
+        }
+
+        form {
+            text-align: center;
+        }
+
+        .container input {
+            background-color: rgb(30, 30, 30);
+            width: 100%;
+            text-align: center;
+            font-size: 15px;
+            padding: 10px;
+            margin: 10px auto;
+            color: rgb(206, 209, 212);
+            border: 2px solid rgb(206, 209, 212);
+            border-radius: 30px;
+        }
+        .container input::-ms-reveal{
+            display: none;
+        }
+        .container input:focus {
+            outline: 0;
+            border-color: rgb(78, 161, 239);
+            transition: all 0.5s ease;
+        }
+
+        .container button {
+            background-color: rgb(30, 30, 30);
+            width: 50%;
+            text-align: center;
+            font-size: 15px;
+            padding: 10px;
+            margin: 15px auto 0px;
+            color: rgb(206, 209, 212);
+            border: 2px solid rgb(206, 209, 212);
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            color: rgb(78, 161, 239);
+            border-color: rgb(78, 161, 239);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">LOGIN</div>
+        <form name="formname">
+            <input type="text" name="username" placeholder="USERNAME" onfocus="this.placeholder=''"
+                onblur="this.placeholder='USERNAME'" autocomplete="off">
+            <input type="password" name="password" placeholder="PASSWORD" onfocus="this.placeholder=''"
+                onblur="this.placeholder='PASSWORD'" autocomplete="off">
+            <button type="submit" id="but" onmouseover="over(this)" onmouseleave="leave(this)"
+                onclick="clickon()">SUBMIT</button>
+        </form>
+    </div>
+    <div draggable="true" id="draggable" >
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="44" height="44" viewBox="0 0 44 44"><g style="mix-blend-mode:passthrough"><ellipse cx="22" cy="22" rx="22" ry="22" fill="#D8D8D8" fill-opacity="1"/></g></svg>
+    </div>
+</body>
+<script>
+    document.getElementById('draggable').addEventListener('dragend', (e) => {
+  const { clientX, clientY } = e;
+  parent.postMessage({
+    pluginDrop: {
+      clientX,
+      clientY,
+      dropMetadata: {
+        svg: e.target.innerHTML
+      },
+    }
+  }, '*');
+  })
+    function over(x) {
+        var p=document.getElementById('but');
+        if(document.formname.username.value == "" && document.formname.password.value == "")  
+        {
+            x.style.color = " rgb(78, 161, 239)";
+            x.style.borderColor = "rgb(78, 161, 239)";
+            p.innerHTML='RIGIST';
+            x.style.transition = "all 0.3s ease";
+        }
+        else if (document.formname.username.value == "" || document.formname.password.value == "") { 
+            x.style.color = "rgb(237,78,78)"; x.style.borderColor = "rgb(237,78,78)"; x.style.transition = "all 0.3s ease"; 
+        }
+        else {
+            x.style.color = "rgb(78, 161, 239)"; x.style.borderColor = "rgb(78, 161, 239)"; x.style.transition = "all 0.3s ease";
+        }
+    }
+    function leave(x) {
+        var p=document.getElementById('but');
+        x.style.color = " rgb(206, 209, 212)";
+        x.style.borderColor = "rgb(206, 209, 212)";
+        p.innerHTML='SUBMIT';
+        x.style.transition = "all 0.3s ease";
+    }
+    function clickon() {
+        if (document.formname.username.value == "" || document.formname.password.value == "") alert("Please enter full information.");
+        else alert("Success.");
+    }
+</script>
+
+</html>
